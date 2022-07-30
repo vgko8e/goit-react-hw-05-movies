@@ -1,0 +1,16 @@
+.home_header {
+    display: flex;
+    column-gap: 20px;
+}
+
+.movie_title {
+    padding-top: 20px;
+}
+
+.movie_list {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
