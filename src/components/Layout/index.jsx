@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Layout.module.css';
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <nav className={styles.container}>
       <NavLink
@@ -23,3 +23,5 @@ export const Layout = () => {
     </nav>
   );
 };
+
+export default Layout;

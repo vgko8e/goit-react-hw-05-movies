@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { fetchTrendingMovies } from '../../service/api';
 import styles from '../Home/Home.module.css';
 
-export const Home = () => {
+const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
@@ -17,12 +17,14 @@ export const Home = () => {
       <h2 className={styles.movie_title}>Trending today</h2>
       <ul className={styles.movie_list}>
         {trendingMovies &&
-          trendingMovies.map(({ id, title }) => (
+          trendingMovies.map(({ id, title, name }) => (
             <li key={id}>
-              <Link to={`/movies/${id}`}>{title}</Link>
+              <Link to={`/movies/${id}`}>{title || name}</Link>
             </li>
           ))}
       </ul>
     </div>
   );
 };
+
+export default Home;

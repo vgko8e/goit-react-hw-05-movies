@@ -4,7 +4,7 @@ import Notiflix from 'notiflix';
 import { ImSearch } from 'react-icons/im';
 import PropTypes from 'prop-types';
 
-export const Searchbar = ({ onSubmit }) => {
+const Searchbar = ({ onSubmit }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleInputChange = e => {
@@ -46,3 +46,5 @@ export const Searchbar = ({ onSubmit }) => {
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+
+export default Searchbar;
