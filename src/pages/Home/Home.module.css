@@ -7,9 +7,11 @@
 }
 
 .movie_list {
+    list-style: none;
     padding-top: 20px;
     padding-bottom: 20px;
-    display: flex;
-    flex-direction: column;
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); */
+    grid-gap: 16px;
     row-gap: 10px;
 }

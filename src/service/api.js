@@ -12,6 +12,7 @@ export const searchMovies = async query => {
   const response = await axios.get(
     `search/movie?query=${query}&api_key=${API_KEY}&include_adult=false&page=1&language=en-US`
   );
+  console.log(response.data);
   return response.data;
 };
 

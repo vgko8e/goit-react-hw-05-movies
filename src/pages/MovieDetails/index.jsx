@@ -11,8 +11,8 @@ const MovieDetails = () => {
 
   useEffect(() => {
     getMovieDetails(movieId).then(data => {
-      setMovie(data.data);
-      setGenres(() => data.data.genres.map(genre => genre.name).join(' '));
+      setMovie(data);
+      setGenres(() => data.genres.map(genre => genre.name).join(' '));
     });
   }, [movieId]);
 
@@ -53,12 +53,12 @@ const MovieDetails = () => {
         <p>Additional information</p>
         <ul>
           <li>
-            <Link to="cast" state={{ from: location?.state?.from ?? '/' }}>
+            <Link to="cast" state={{ ...location.state }}>
               Cast
             </Link>
           </li>
           <li>
-            <Link to="reviews" state={{ from: location?.state?.from ?? '/' }}>
+            <Link to="reviews" state={{ ...location.state }}>
               Reviews
             </Link>
           </li>

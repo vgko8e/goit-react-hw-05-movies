@@ -20,6 +20,7 @@ const Searchbar = ({ onSubmit }) => {
     }
 
     onSubmit(searchQuery);
+    setSearchQuery('');
   };
 
   return (
@@ -34,9 +35,7 @@ const Searchbar = ({ onSubmit }) => {
           value={searchQuery}
           onChange={handleInputChange}
           type="text"
-          autocomplete="off"
-          autofocus
-          placeholder="Search images and photos"
+          placeholder="Search movies"
         />
       </form>
     </header>
