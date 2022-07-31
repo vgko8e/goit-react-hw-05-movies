@@ -1,16 +1,28 @@
 import { searchMovies } from '../../service/api';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Movies.module.css';
 import Searchbar from '../../components/Search';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
   const location = useLocation();
 
-  const handleSubmit = searchQuery =>
-    searchMovies(searchQuery).then(data => setMovies(data.results));
+  useEffect(() => {
+    if (location?.state?.searchQuery) {
+      setSearchQuery(location.state.searchQuery);
+      searchMovies(location.state.searchQuery).then(data =>
+        setMovies(data.results)
+      );
+    }
+  }, [location?.state?.searchQuery]);
 
+  const handleSubmit = query => {
+    setSearchQuery(query);
+    searchMovies(query).then(data => setMovies(data.results));
+  };
   return (
     <div>
       <Searchbar onSubmit={handleSubmit} />
@@ -20,7 +32,10 @@ const Movies = () => {
             {movies.map(movie => {
               return (
                 <li key={movie.id}>
-                  <Link to={`/movies/${movie.id}`} state={{ from: location }}>
+                  <Link
+                    to={`/movies/${movie.id}`}
+                    state={{ from: location, searchQuery: searchQuery }}
+                  >
                     {movie.title}
                   </Link>
                 </li>

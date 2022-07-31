@@ -1,4 +1,4 @@
-import { getMovieReviews } from '../../services/api';
+import { getMovieReviews } from '../../service/api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -13,9 +13,9 @@ const Reviews = () => {
   return (
     <div>
       {review &&
-        (review.results.length > 0 ? (
+        (review.length > 0 ? (
           <ul>
-            {review.results.map(({ id, author, content }) => (
+            {review.map(({ id, author, content }) => (
               <li key={id}>
                 <h2>Author: {author}</h2>
                 <p> {content}</p>
