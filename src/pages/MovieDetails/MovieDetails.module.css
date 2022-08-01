@@ -1,3 +1,9 @@
+img {
+  display: block;
+  max-width: 250px;
+  height: auto;
+}
+
 .container {
     display: flex;
   }

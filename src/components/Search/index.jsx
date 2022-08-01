@@ -2,10 +2,12 @@ import { useState } from 'react';
 import styles from './Search.module.css';
 import Notiflix from 'notiflix';
 import { ImSearch } from 'react-icons/im';
+import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Searchbar = ({ onSubmit }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('query'));
 
   const handleInputChange = e => {
     setSearchQuery(e.currentTarget.value.toLowerCase());
@@ -14,13 +16,13 @@ const Searchbar = ({ onSubmit }) => {
   const handleSearchForm = e => {
     e.preventDefault();
 
-    if (searchQuery.trim(' ') === '') {
+    if (!searchQuery) {
       Notiflix.Notify.failure('Please, fill out the form');
       return;
     }
 
     onSubmit(searchQuery);
-    setSearchQuery('');
+    // setSearchQuery('');
   };
 
   return (
@@ -32,7 +34,7 @@ const Searchbar = ({ onSubmit }) => {
 
         <input
           className={styles.searchForm_input}
-          value={searchQuery}
+          value={searchQuery || ''}
           onChange={handleInputChange}
           type="text"
           placeholder="Search movies"
