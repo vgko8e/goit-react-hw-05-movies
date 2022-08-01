@@ -7,7 +7,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const { movieId } = useParams();
   const [genres, setGenres] = useState('');
-  const { state } = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     getMovieDetails(movieId).then(data => {
@@ -20,7 +20,10 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <Link to={state.from ?? '/'} state={{ searchQuery: state.searchQuery }}>
+      <Link
+        to={location?.state?.from ?? '/'}
+        state={{ searchQuery: location?.state?.searchQuery }}
+      >
         <button type="button" className={styles.button}>
           Go back
         </button>
@@ -53,12 +56,24 @@ const MovieDetails = () => {
         <p>Additional information</p>
         <ul>
           <li>
-            <Link to="cast" state={{ from: state.from ?? '/' }}>
+            <Link
+              to="cast"
+              state={{
+                from: location?.state?.from ?? '/',
+                searchQuery: location?.state?.searchQuery,
+              }}
+            >
               Cast
             </Link>
           </li>
           <li>
-            <Link to="reviews" state={{ from: state.from ?? '/' }}>
+            <Link
+              to="reviews"
+              state={{
+                from: location?.state?.from ?? '/',
+                searchQuery: location?.state?.searchQuery,
+              }}
+            >
               Reviews
             </Link>
           </li>
